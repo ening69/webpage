@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Group 18: Emma Ning and Kristy Shi" />
+
+<meta name="date" content="2018-12-10" />
+
+<title>Patrolling New York State</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Final Project Title</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Blogpost</a>
+</li>
+<li>
+  <a href="more_info.html">More info</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Patrolling New York State</h1>
+<h4 class="author"><em>Group 18: Emma Ning and Kristy Shi</em></h4>
+<h4 class="date"><em>December 10, 2018</em></h4>
+
+</div>
+
+
+<div id="background" class="section level1">
+<h1>Background</h1>
+</div>
+<div id="problem-statement" class="section level1">
+<h1>Problem Statement</h1>
+<p>What is the scale of the 2016-17 increase in crime violence and what are the factors that influence NYS crime rate in 2017?</p>
+</div>
+<div id="scale-of-increase-2001-17-in-depth" class="section level1">
+<h1>Scale of Increase: 2001-17 In-Depth</h1>
+<p>To further understand the increase of crime rate and to better visualize the seemingly linear decrease in crime rate from 1990 to 2017 (seen in the coverpage), we graphed crime count from 2001 to 2017.</p>
+</div>
+<div id="crime-time-series" class="section level1">
+<h1>Crime Time-series</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># violent and non-violent crimes</span>
+crime_types &lt;-<span class="st"> </span>violence <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Year) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">drop_na</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">violent_crime=</span><span class="kw">sum</span>(Violent.Count),
+         <span class="dt">nonviolent_crime=</span><span class="kw">sum</span>(Property.Count)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">distinct</span>(violent_crime, nonviolent_crime) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key=</span><span class="st">&quot;crime_type&quot;</span>, <span class="dt">value=</span><span class="st">&quot;count&quot;</span>, violent_crime<span class="op">:</span>nonviolent_crime)
+
+<span class="kw">ggplot</span>(crime_types, <span class="kw">aes</span>(<span class="dt">x=</span>Year, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>crime_type), <span class="dt">size=</span><span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Violence Count&quot;</span>, 
+       <span class="dt">title=</span><span class="st">&quot;Crime Counts By Type from 2001 to 2017&quot;</span>, <span class="dt">color=</span><span class="st">&quot;Crime Type&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span>(crime_types<span class="op">$</span>Year))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>),
+        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>),
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">size=</span><span class="dv">6</span>),
+        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;royalblue1&quot;</span>, <span class="st">&quot;darkolivegreen4&quot;</span>))</code></pre></div>
+<p><img src="Group18_final_project_files/figure-html/unnamed-chunk-3-1.png" width="1056" /></p>
+<p>This time series line graph shows that the 2016-17 increase in crime rates seem to be less significant than initially expected. In the overall 1990 picture, peaks in crime rate were counterbalanced with declines; as a result, the upward slope in 2016-17 was especially visible. This means that surveillance and increased defense spending did not reduce crime violence to the extent that there was no increase in crime during 1990 to 2016 in NYS.</p>
+</div>
+<div id="map-of-crime-rates-per-capita" class="section level1">
+<h1>Map of Crime Rates per Capita</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># some data wrangling</span>
+<span class="co"># for year 2017</span>
+violence_county &lt;-<span class="st"> </span>violence <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(County, Index.Rate, Year) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Year<span class="op">==</span><span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">right_join</span>(newyork_pop, <span class="dt">by=</span><span class="st">&quot;County&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># &quot;num_unit&quot; stands for the number of units (100,000)</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">num_unit=</span>estimate<span class="op">/</span><span class="dv">100000</span>,
+         <span class="co"># &quot;total_index&quot; stands for the total index crime for that county</span>
+         <span class="dt">total_index=</span>Index.Rate<span class="op">*</span>num_unit,
+         <span class="dt">log_index=</span><span class="kw">round</span>(<span class="kw">log</span>(total_index), <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># make it discrete</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">index_discrete=</span><span class="kw">cut</span>(log_index, <span class="dt">breaks=</span><span class="dv">7</span>))
+
+<span class="co"># plot using sf</span>
+<span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> violence_county, <span class="kw">aes</span>(<span class="dt">fill =</span> index_discrete), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> violence_county, <span class="kw">aes</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">label =</span> County), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">type =</span> <span class="st">&quot;seq&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;OrRd&quot;</span>, <span class="dt">direction =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;2017 Map of Crime Rates in New York State in Proportion to Population&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Log Total Index Crime&quot;</span>,
+       <span class="dt">x =</span> <span class="st">&quot;Longitude&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Latitude&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">17</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>),
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>), <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),
+        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>), <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</code></pre></div>
+<p><img src="Group18_final_project_files/figure-html/unnamed-chunk-5-1.png" width="1056" /> We graphed the Index Rate for the year 2017 to see counties with the most crime per capita.</p>
+<p><strong>White(1)= lowest ; Dark-Red(7)= highest</strong></p>
+</div>
+<div id="possible-crime-influences--2017" class="section level1">
+<h1>Possible Crime Influences- 2017</h1>
+<div id="income-and-crime-rates" class="section level2">
+<h2>Income and Crime Rates</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Mean wage by county, year 2017</span>
+income_short &lt;-<span class="st"> </span>income <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Area.Type<span class="op">==</span><span class="st">&quot;County&quot;</span>, Year<span class="op">==</span><span class="st">&quot;2017&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>NAICS, <span class="op">-</span>NAICS.Title) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Area) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">county_mean_wage=</span><span class="kw">mean</span>(Annual.Average.Salary)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">distinct</span>(Area, county_mean_wage) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(county_mean_wage)
+<span class="co"># top 10 lowest income counties</span>
+income_short1 &lt;-<span class="st"> </span>income_short[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ]
+<span class="co"># rename vars for display</span>
+<span class="co"># 10 lowest wage county</span>
+income_short1 &lt;-<span class="st"> </span>income_short1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">County=</span>Area, <span class="dt">Mean_wage=</span>county_mean_wage)
+<span class="co"># 10 highest wage county</span>
+income_short2 &lt;-<span class="st"> </span>income_short[<span class="dv">53</span><span class="op">:</span><span class="dv">62</span>, ]
+income_short2 &lt;-<span class="st"> </span>income_short2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">County=</span>Area, <span class="dt">Mean_wage=</span>county_mean_wage)
+<span class="co"># side-by-side</span>
+income_comparison &lt;-<span class="st"> </span><span class="kw">cbind</span>(income_short1, income_short2)
+income_comparison &lt;-<span class="st"> </span>income_comparison <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">County_low=</span>County, <span class="dt">County_high=</span>County1,
+         <span class="dt">Low_mean_wage=</span>Mean_wage, <span class="dt">Top_mean_wage=</span>Mean_wage1)
+income_comparison</code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">County_low</th>
+<th align="right">Low_mean_wage</th>
+<th align="left">County_high</th>
+<th align="right">Top_mean_wage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hamilton County</td>
+<td align="right">28949.63</td>
+<td align="left">Kings County</td>
+<td align="right">50588.64</td>
+</tr>
+<tr class="even">
+<td align="left">Schuyler County</td>
+<td align="right">31504.98</td>
+<td align="left">Bronx County</td>
+<td align="right">51139.06</td>
+</tr>
+<tr class="odd">
+<td align="left">Yates County</td>
+<td align="right">32288.61</td>
+<td align="left">Monroe County</td>
+<td align="right">51894.71</td>
+</tr>
+<tr class="even">
+<td align="left">Allegany County</td>
+<td align="right">33869.60</td>
+<td align="left">Albany County</td>
+<td align="right">53946.99</td>
+</tr>
+<tr class="odd">
+<td align="left">Tioga County</td>
+<td align="right">34053.21</td>
+<td align="left">Rockland County</td>
+<td align="right">54103.35</td>
+</tr>
+<tr class="even">
+<td align="left">Lewis County</td>
+<td align="right">34188.24</td>
+<td align="left">Queens County</td>
+<td align="right">54483.55</td>
+</tr>
+<tr class="odd">
+<td align="left">Oswego County</td>
+<td align="right">34511.38</td>
+<td align="left">Suffolk County</td>
+<td align="right">63133.10</td>
+</tr>
+<tr class="even">
+<td align="left">Delaware County</td>
+<td align="right">34710.00</td>
+<td align="left">Nassau County</td>
+<td align="right">63333.19</td>
+</tr>
+<tr class="odd">
+<td align="left">Livingston County</td>
+<td align="right">35019.60</td>
+<td align="left">Westchester County</td>
+<td align="right">72193.03</td>
+</tr>
+<tr class="even">
+<td align="left">Orleans County</td>
+<td align="right">35076.53</td>
+<td align="left">New York County</td>
+<td align="right">95289.51</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The table depicts counties with the 10 highest and lowest mean wage in 2017. Hamilton and Schuyler, the lightest colored counties on the map, have the least mean wages. The lowest waged 10 counties range from white(1) to orange(4), and the highest from orange(4) to dark-red(7).</p>
+<p>The data is surprising as people usually associate poorer regions with more crime, but the data seems to demonstrates that the higher the wage, the higher the crime rates per capita. Does this correlation prove causation, or is this association a mere coincidence?</p>
+</div>
+<div id="population-and-crime-rates" class="section level2">
+<h2>Population and Crime Rates</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># year 2017</span>
+pop &lt;-<span class="st"> </span>violence <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Year<span class="op">==</span><span class="st">&quot;2017&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(County, Population) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Population))
+
+pop1 &lt;-<span class="st"> </span>pop[<span class="dv">53</span><span class="op">:</span><span class="dv">62</span>, ]
+pop1 &lt;-<span class="st"> </span>pop1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">Low_population=</span>Population)
+pop2 &lt;-<span class="st"> </span>pop[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ]
+pop2 &lt;-<span class="st"> </span>pop2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">Top_population=</span>Population)
+pop_comparison &lt;-<span class="st"> </span><span class="kw">cbind</span>(pop1, pop2)
+<span class="kw">row.names</span>(pop_comparison) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+pop_comparison</code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">County</th>
+<th align="right">Low_population</th>
+<th align="left">County</th>
+<th align="right">Top_population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Delaware</td>
+<td align="right">44468</td>
+<td align="left">Kings</td>
+<td align="right">2646816</td>
+</tr>
+<tr class="even">
+<td align="left">Orleans</td>
+<td align="right">41194</td>
+<td align="left">Queens</td>
+<td align="right">2356841</td>
+</tr>
+<tr class="odd">
+<td align="left">Wyoming</td>
+<td align="right">40666</td>
+<td align="left">New York</td>
+<td align="right">1663498</td>
+</tr>
+<tr class="even">
+<td align="left">Essex</td>
+<td align="right">36491</td>
+<td align="left">Suffolk</td>
+<td align="right">1495619</td>
+</tr>
+<tr class="odd">
+<td align="left">Seneca</td>
+<td align="right">34779</td>
+<td align="left">Bronx</td>
+<td align="right">1470074</td>
+</tr>
+<tr class="even">
+<td align="left">Schoharie</td>
+<td align="right">31166</td>
+<td align="left">Nassau</td>
+<td align="right">1367901</td>
+</tr>
+<tr class="odd">
+<td align="left">Lewis</td>
+<td align="right">26893</td>
+<td align="left">Westchester</td>
+<td align="right">980819</td>
+</tr>
+<tr class="even">
+<td align="left">Yates</td>
+<td align="right">24910</td>
+<td align="left">Erie</td>
+<td align="right">923447</td>
+</tr>
+<tr class="odd">
+<td align="left">Schuyler</td>
+<td align="right">18106</td>
+<td align="left">Monroe</td>
+<td align="right">749892</td>
+</tr>
+<tr class="even">
+<td align="left">Hamilton</td>
+<td align="right">4505</td>
+<td align="left">Richmond</td>
+<td align="right">479104</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In 2017, 8 out of 10 counties with the highest population had the highest mean wage per worker, and 6 out of 10 lowest population had the lowest mean wage. The two counties, Erie and Richmond are dark-red(7) and dark-orange(5) respectively. Hamilton and Schuyler have the lowest population. Note that the crime range for highest population is dark-orange(5) to dark-red(7).</p>
+<p>Population seems to have a closer correlation to danger than Income since the color gradient for crime rate per capita is more compact (5-7 as opposed to 4-7).</p>
+</div>
+<div id="ethnicity-and-crime-rates" class="section level2">
+<h2>Ethnicity and Crime Rates</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we picked out several dangerous regions and look at the ethnic make-up</span>
+<span class="co"># from 2010 census</span>
+ethnicity1 &lt;-<span class="st"> </span>ethnicity <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Area=</span><span class="kw">as.factor</span>(X)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Area <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hamilton&quot;</span>, <span class="st">&quot;Schuyler&quot;</span>, <span class="st">&quot;Lewis&quot;</span>, <span class="st">&quot;Yates&quot;</span>,
+                     <span class="st">&quot;Kings&quot;</span>, <span class="st">&quot;Queens&quot;</span>, <span class="st">&quot;New York&quot;</span>, <span class="st">&quot;Bronx&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Area, Population, X2010<span class="op">:</span>X.<span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">white=</span>X2010, <span class="dt">black=</span>X.<span class="dv">7</span>, <span class="dt">asian=</span>X.<span class="dv">8</span>, <span class="dt">hispanic=</span>X.<span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key=</span><span class="st">&quot;group&quot;</span>, <span class="dt">value=</span><span class="st">&quot;percentage&quot;</span>, white<span class="op">:</span>hispanic) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage=</span><span class="kw">parse_number</span>(percentage))
+
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span>ethnicity1, <span class="kw">aes</span>(<span class="dt">x=</span>Area, <span class="dt">y=</span>percentage, <span class="dt">fill=</span>group))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>, <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">width=</span><span class="fl">0.7</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>()<span class="op">+</span><span class="kw">theme_dark</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Ethnic Makeup in Areas within NYS&quot;</span>,
+       <span class="dt">fill=</span><span class="st">&quot;Ethnic Group&quot;</span>,
+       <span class="dt">x=</span><span class="st">&quot;area&quot;</span>, <span class="dt">y=</span><span class="st">&quot;percentage&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">15</span>, <span class="dt">hjust=</span><span class="fl">0.5</span>),
+        <span class="dt">axis.text.y=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>), <span class="dt">axis.title.y=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>),
+        <span class="dt">legend.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>))</code></pre></div>
+<p><img src="Group18_final_project_files/figure-html/unnamed-chunk-8-1.png" width="1056" /></p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>The scale of the 2016-17 increase in NYS crime violence is negligible in closer examination. Wage, population and crime rate per capita seem to have a correlation: the higher the earnings and the higher the county’s population size, the higher the crime per capita. The correlation between wage and population is self-evident; more populated counties provide higher quantities and varieties of job opportunities. A possible explanation for the correlation between population and crime rates could be that job opportunities vary (thus, inequality), or that denser populations lead to increased competition and a higher cost of living (thus, cost of living negates wages).</p>
+</div>
+<div id="description-of-the-data" class="section level1">
+<h1>Description of the data</h1>
+<div id="index-violent-property-and-firearm-rates-by-county-beginning-1990" class="section level2">
+<h2>Index, Violent, Property, and Firearm Rates By County: Beginning 1990</h2>
+<p>This data is provided by the New York State Division of Criminal Justice Services and is based on crime reports from more than 500 New York State and sheriffs’ departments <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. This annually updated dataset collects information on seven crimes classified as Index crimes. The two category of crimes are <strong>violent crimes</strong> (murder/non-negligent manslaughter, forcible rape, robbery, and aggravated assault) and <strong>property crimes</strong> (burglary, larceny, and motor vehicle theft).</p>
+</div>
+<div id="comparison-of-2000-and-2010-populations-by-race-and-ethnicity" class="section level2">
+<h2>Comparison of 2000 and 2010 Populations by Race and Ethnicity</h2>
+<p>This dataset is obtained from the New York State Department of Labor, which sources its information from the 2000 and 2010 Census. The data compares the New York State, Regional, and County Populations by Race and Ethnicity (in this case, percentage of White, Black, Asian, Hispanic).</p>
+</div>
+<div id="quarterly-census-of-employment-and-wages-annual-data-beginning-2000" class="section level2">
+<h2>Quarterly Census of Employment and Wages Annual Data: Beginning 2000</h2>
+<p>This data is collected from the Quarterly Census of Employment and Wages program, a cooperative program with the U.S. Bureau of Labor Statistics, which collects employment and wage data. This data provides a virtual census of employees and their wages as well as the most complete universe of employment and wage data, by industry, at the State, regional and county levels.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>“Index, Violent, Property, and Firearm Rates By County: Beginning 1990.” State University of New York (SUNY) Campus Locations with Websites, Enrollment and Select Program Offerings | Open Data NY, DATA.NY.GOV, 25 Nov. 2018, data.ny.gov/Public-Safety/Index-Violent-Property-and-Firearm-Rates-By-County/34dd-6g2j.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
