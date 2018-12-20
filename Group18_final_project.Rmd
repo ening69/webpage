@@ -40,13 +40,21 @@ violence <- read.csv("violence.csv")
 ethnicity <- read.csv("ethnicity.csv")
 income <- read.csv("wages.csv")
 ```
-# Background
-
-
 
 # Problem Statement 
 
 What is the scale of the 2016-17 increase in crime violence and what are the factors that influence NYS crime rate in 2017?
+
+# Description of the data 
+
+## Index, Violent, Property, and Firearm Rates By County: Beginning 1990
+This data is provided by the New York State Division of Criminal Justice Services and is based on crime reports from more than 500 New York State and sheriffs’ departments ^[“Index, Violent, Property, and Firearm Rates By County: Beginning 1990.” State University of New York (SUNY) Campus Locations with Websites, Enrollment and Select Program Offerings | Open Data NY, DATA.NY.GOV, 25 Nov. 2018, data.ny.gov/Public-Safety/Index-Violent-Property-and-Firearm-Rates-By-County/34dd-6g2j.]. This annually updated dataset collects information on seven crimes classified as Index crimes. The two category of crimes are **violent crimes** (murder/non-negligent manslaughter, forcible rape, robbery, and aggravated assault) and **property crimes** (burglary, larceny, and motor vehicle theft).
+
+## Comparison of 2000 and 2010 Populations by Race and Ethnicity
+This dataset is obtained from the New York State Department of Labor, which sources its information from the 2000 and 2010 Census. The data compares the New York State, Regional, and County Populations by Race and Ethnicity (in this case, percentage of White, Black, Asian, Hispanic). 
+
+## Quarterly Census of Employment and Wages Annual Data: Beginning 2000
+This data is collected from the Quarterly Census of Employment and Wages program, a cooperative program with the U.S. Bureau of Labor Statistics, which collects employment and wage data. This data provides a virtual census of employees and their wages as well as the most complete universe of employment and wage data, by industry, at the State, regional and county levels ^[“Quarterly Census of Employment and Wages Annual Data: Beginning 2000.” State University of New York (SUNY) Campus Locations with Websites, Enrollment and Select Program Offerings | Open Data NY, DATA.NY.GOV, 14 Nov. 2018, data.ny.gov/Economic-Development/Quarterly-Census-of-Employment-and-Wages-Annual-Da/shc7-xcbw.]. 
 
 # Scale of Increase: 2001-17 In-Depth
 
@@ -56,6 +64,7 @@ To further understand the increase of crime rate and to better visualize the see
 ```{r, echo = TRUE, message=FALSE, warning=FALSE}
 # violent and non-violent crimes
 crime_types <- violence %>% 
+  filter(Year==c(2010:2017)) %>% 
   group_by(Year) %>% 
   drop_na() %>% 
   mutate(violent_crime=sum(Violent.Count),
@@ -225,4 +234,4 @@ This data is provided by the New York State Division of Criminal Justice Service
 This dataset is obtained from the New York State Department of Labor, which sources its information from the 2000 and 2010 Census. The data compares the New York State, Regional, and County Populations by Race and Ethnicity (in this case, percentage of White, Black, Asian, Hispanic). 
 
 ## Quarterly Census of Employment and Wages Annual Data: Beginning 2000
-This data is collected from the Quarterly Census of Employment and Wages program, a cooperative program with the U.S. Bureau of Labor Statistics, which collects employment and wage data. This data provides a virtual census of employees and their wages as well as the most complete universe of employment and wage data, by industry, at the State, regional and county levels. 
+This data is collected from the Quarterly Census of Employment and Wages program, a cooperative program with the U.S. Bureau of Labor Statistics, which collects employment and wage data. This data provides a virtual census of employees and their wages as well as the most complete universe of employment and wage data, by industry, at the State, regional and county levels ^[“Quarterly Census of Employment and Wages Annual Data: Beginning 2000.” State University of New York (SUNY) Campus Locations with Websites, Enrollment and Select Program Offerings | Open Data NY, DATA.NY.GOV, 14 Nov. 2018, data.ny.gov/Economic-Development/Quarterly-Census-of-Employment-and-Wages-Annual-Da/shc7-xcbw.]. 
