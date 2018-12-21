@@ -234,5 +234,5 @@ What does this mean? This correlation could be a factor of income and not crime,
 
 
 # Conclusion
-The scale of the 2016-17 increase in NYS crime violence is negligible in closer examination. Income, Population, and Diversity have a positive correlation with crime rate per capita. A possible explanation for this correlation could be that more densely populated counties provide more and varied types of jobs, which leads to immigration (thus, racial diversity) and large gaps between the highest and lowest wage earned. In addition, counties with denser population have higher costs of living, which leads to lower net income. In inequality of wage gaps in a large population size could engender dissention and crime.
+The scale of the 2016-17 increase in NYS crime violence is negligible in closer examination. Income, Population, and Diversity have a positive correlation with crime rate per capita. A possible explanation for this correlation could be that more densely populated counties provide more and varied types of jobs, which leads to immigration (thus, racial diversity) and large gaps between the highest and lowest wage earned. In addition, counties with denser population have higher costs of living, which leads to lower net income. Inequality of wage gaps in a large population size could engender dissention and crime.
  
