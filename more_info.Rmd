@@ -171,9 +171,9 @@ income_comparison <- income_comparison %>%
 income_comparison
 ```
 
-The table depicts counties with the 10 highest and lowest mean wage in 2017. Hamilton(1) and Schuyler(1), the lightest colored counties on the map, have the least mean wages. The lowest waged 10 counties range from white(1) to orange(4), and the highest from orange(4) to dark-red(7). 
+In 2017, 8 of 10 counties with the highest population had the highest mean wage per worker, and 6 out of 10 lowest population had the lowest mean wage. Hamilton and Schuyler have the lowest population. Note that the crime range for highest population is dark-orange(5) to dark-red(7). 
 
-The data is surprising as people usually associate poorer regions with more crime. However, the data demonstrates a positive association between wage and crime rates per capita. Does this correlation prove causation, or is this association a mere coincidence? 
+The data is surprising as less affluent regions are associated with crime. However, the data demonstrate a positive association between wage and crime rates per capita. Is this association a coincidence? 
 
 
 ## Population and Crime Rates
@@ -197,14 +197,12 @@ pop_comparison
 
 In 2017, 8 out of 10 counties with the highest population had the highest mean wage per worker, and 6 out of 10 lowest population had the lowest mean wage. The two counties, Erie and Richmond are dark-red(7) and dark-orange(5) respectively. Hamilton and Schuyler have the lowest population. Note that the crime range for highest population is dark-orange(5) to dark-red(7). 
 
-Population seems to have a closer correlation to danger than Income since the color gradient for crime rate per capita is more compact (5-7 as opposed to 4-7). 
+Population seems to be more correlated to crime than Income since the color gradient for crime rate per capita is more compact (5-7 as opposed to 4-7).
 
 
 ## Racial Diversity
 
-How ethnically diverse are counties with the most crime rate?
-
-Since population has a closer association to crime rate than income, we determined the ethnic-makeup of the 4 counties with the highest and lowest population. Note that we are assuming county ethnicity did not shift drastically from 2010 to 2017, as the Ethnicity data is obtain from the decennial 2010 census data. 
+Since population has a closer association to crime rate than income, we determined the ethnic-makeup of the 4 counties with the highest and lowest population. Note that we are assuming county ethnicity did not shift drastically from 2010 to 2017, as the Ethnicity data is obtain from the decennial 2010 census data.
 
 ```{r, echo = TRUE, message=FALSE, warning=FALSE}
 # we picked out several dangerous regions and look at the ethnic make-up
@@ -232,8 +230,9 @@ ggplot(data=ethnicity1, aes(x=Area, y=percentage, fill=group))+
 
 All counties shown are predominantly white, excluding Queens, which has a relatively proportionate White to Asian population. Hamilton(1), Lewis(2), Schuyler(1), and Yates(2) have close to no racial diversity. Kings(7), New York(7), Queens(7), Suffolk(7) have much higher racial diversity.
 
-What does this mean? This correlation could be a factor of income and not crime, as income and population are closely correlated.  
+What does this mean? This correlation could be a factor of income and not crime, as income and population are closely correlated.
 
 
-#Conclusion
-The scale of the 2016-17 increase in NYS crime violence is negligible in closer examination. Income, Population, and Diversity have a positive correlation with crime rate per capita. A possible explanation for this correlation could be that more densely populated counties provide more and varied types of jobs, which leads to immigration (thus, racial diversity) and large gaps between the highest and lowest wage earned. In addition, counties with denser population have higher costs of living, which leads to lower net income. In inequality of wage gaps in a large population size could engender dissention and crime. 
+# Conclusion
+The scale of the 2016-17 increase in NYS crime violence is negligible in closer examination. Income, Population, and Diversity have a positive correlation with crime rate per capita. A possible explanation for this correlation could be that more densely populated counties provide more and varied types of jobs, which leads to immigration (thus, racial diversity) and large gaps between the highest and lowest wage earned. In addition, counties with denser population have higher costs of living, which leads to lower net income. In inequality of wage gaps in a large population size could engender dissention and crime.
+ 

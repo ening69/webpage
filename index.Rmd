@@ -70,7 +70,5 @@ ggplot(crime_types, aes(x=Year, y=count)) +
 This graph shows that from 1990 to 2001, in the macro level, crime counts in New York State seemed to decrease at a similar rate, dropped drastically from 2001 to 2002, and continued to decrease at a slower rate until 2016, where it increased sharply. 
 
 
-
 <font size="+1">
-It seems that the stark decrease of crime rates between 2001 and 2002 has a correlation with the increase of security in surveillance, defense, immigration, among other sectors in the subsequent period after event (PBS). Nonetheless, crime count rates in New York State increased between 2016 and 2017.<span style="color:DarkBlue"> We want to examine the 2016 to 2017 crime rate increase to determine the factors that influence crime rate and areas with the most crime.</span>
-</font> 
+It seems that the stark decrease of crime rates between 2001 and 2002 has a correlation with the increase of security in surveillance, defense, immigration, among other sectors in the subsequent period after event (PBS). Nonetheless, crime count rates in New York State increased between 2016 and 2017.<span style="color:DarkBlue"> We want to examine the scale of the increase, and determine the factors that influence crime rate.</span>
