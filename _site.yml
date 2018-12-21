@@ -1,4 +1,4 @@
-name: "my-website"
+name: "Patrolling New York State"
 output_dir: docs
 # The website theme was chosen from
 # https://rmarkdown.rstudio.com/html_document_format#appearance_and_style
@@ -14,7 +14,7 @@ output:
     self_contained: no
 # All fa icons were obtained from https://fontawesome.com/icons?d=gallery
 navbar:
-  title: "My Website"
+  title: "Patrolling New York State"
   left:
     - text: "Home"
       href: index.html
